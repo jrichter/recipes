@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  author: MyString
+  oven_temp: 1
+  directions: MyString
+
+two:
+  name: MyString
+  author: MyString
+  oven_temp: 1
+  directions: MyString
