@@ -40,6 +40,7 @@ class IngredientsController < ApplicationController
 
   # POST /ingredients
   # POST /ingredients.xml
+  # This action should check if the ingredient already exists, if it does redirect_to :action => :update, :ingredient => params[:ingredient]...recipe...amount and so on
   def create
     @recipe = Recipe.find(params["recipe"]["id"])
     @ingredient = Ingredient.new(params["ingredient"])
