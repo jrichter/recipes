@@ -1,8 +1,13 @@
-<p>
-  <b>Name:</b>
+<h1>
   <%=h @ingredient.name %>
+</h1>
+
+<p> Recipes that have this ingredient. <br/><br/>
+  <% @ingredient.recipes.each do |recipe| %>
+    <%= link_to recipe.name, recipe %> - <%=h recipe.amounts.find(:first, :conditions => {:ingredient_id => @ingredient.id}).ing_amnt %> <%=h @ingredient.name %><br/>
+  <% end %>
 </p>
 
-
 <%= link_to 'Edit', edit_ingredient_path(@ingredient) %> |
-<%= link_to 'Back', ingredients_path %>
+<%= link_to 'Back', ingredients_path %> |
+<%= link_to 'Recipes', recipes_path %>
