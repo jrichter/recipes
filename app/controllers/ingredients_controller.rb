@@ -59,12 +59,14 @@ class IngredientsController < ApplicationController
   # PUT /ingredients/1
   # PUT /ingredients/1.xml
   def update
+    @recipe = Recipe.find(params["recipe"]["id"])
     @ingredient = Ingredient.find(params[:id])
+    @amount = Amount.find(@ingredient)
 
     respond_to do |format|
-      if @ingredient.update_attributes(params[:ingredient])
+      if @ingredient.update_attributes(params[:ingredient]) and @amount.update_attributes(params["amount"].merge(:ingredient_id => @ingredient.id, :recipe_id => @recipe.id ))
         flash[:notice] = 'Ingredient was successfully updated.'
-        format.html { redirect_to(@ingredient) }
+        format.html { redirect_to(@recipe) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

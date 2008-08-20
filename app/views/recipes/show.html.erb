@@ -20,7 +20,7 @@
 <p>
   <b>Ingredients:</b><br/>
   <% @recipe.amounts.each do |amount| %>
-  <%=h amount.ing_amnt %> <%= link_to amount.ingredient.name, amount.ingredient %> <br/>
+  <%=h amount.ing_amnt %> <%= link_to amount.ingredient.name, amount.ingredient %> <%= link_to 'Edit',edit_recipe_ingredient_path(@recipe,amount.ingredient ) %><br/>
   <% end %>
 </p>
 

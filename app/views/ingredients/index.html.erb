@@ -9,7 +9,6 @@
   <tr>
     <td><%=h ingredient.name %></td>
     <td><%= link_to 'Show', ingredient %></td>
-    <td><%= link_to 'Edit', edit_ingredient_path(ingredient) %></td>
     <td><%= link_to 'Destroy', ingredient, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
