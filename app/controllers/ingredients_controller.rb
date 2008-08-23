@@ -1,4 +1,7 @@
 class IngredientsController < ApplicationController
+
+before_filter :load_recipe, :except => [:index, :show, :destroy]
+
   # GET /ingredients
   # GET /ingredients.xml
   def index
@@ -25,7 +28,6 @@ class IngredientsController < ApplicationController
   # GET /ingredients/new.xml
   def new
     @ingredient = Ingredient.new  
-    @amount = Amount.new
     
     respond_to do |format|
       format.html # new.html.erb
@@ -40,14 +42,15 @@ class IngredientsController < ApplicationController
 
   # POST /ingredients
   # POST /ingredients.xml
-  # This action should check if the ingredient already exists, if it does redirect_to :action => :update, :ingredient => params[:ingredient]...recipe...amount and so on
+  # This action checks to see if an ingredient exists, if so it uses that ingredient
+  # and links the ingredient to the recipe with the amount
   def create
-    @recipe = Recipe.find(params["recipe"]["id"])
-    @ingredient = Ingredient.new(params["ingredient"])
+
+    @ingredient = Ingredient.find_by_name(params["ingredient"]["name"]) || Ingredient.new(params["ingredient"])
     respond_to do |format|
       if @ingredient.save and Amount.create(params["amount"].merge(:ingredient_id => @ingredient.id, :recipe_id => @recipe.id))
         flash[:notice] = 'Ingredient was successfully created.'
-        format.html { redirect_to(@ingredient) }
+        format.html { redirect_to(@recipe) }
         format.xml  { render :xml => @ingredient, :status => :created, :location => @ingredient }
       else
         format.html { render :action => "new" }
@@ -59,7 +62,6 @@ class IngredientsController < ApplicationController
   # PUT /ingredients/1
   # PUT /ingredients/1.xml
   def update
-    @recipe = Recipe.find(params["recipe"]["id"])
     @ingredient = Ingredient.find(params[:id])
     @amount = Amount.find(@ingredient)
 
@@ -75,6 +77,9 @@ class IngredientsController < ApplicationController
     end
   end
 
+  def load_recipe
+    @recipe = Recipe.find(params[:recipe_id])
+  end
 
   # DELETE /ingredients/1
   # DELETE /ingredients/1.xml
@@ -83,7 +88,7 @@ class IngredientsController < ApplicationController
     @ingredient.destroy
 
     respond_to do |format|
-      format.html { redirect_to(ingredient_url) }
+      format.html { redirect_to(ingredients_url) }
       format.xml  { head :ok }
     end
   end

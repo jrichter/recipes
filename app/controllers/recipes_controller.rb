@@ -1,8 +1,20 @@
 class RecipesController < ApplicationController
+#before_create :create_permalink
+
   # GET /recipes
   # GET /recipes.xml
   def index
-    @recipes = Recipe.find(:all)
+    options = {
+      :order => 'name DESC'
+    }
+   if params[:term]
+     options[:conditions] = [
+     "name LIKE :term OR directions LIKE :term OR author LIKE :term OR oven_temp LIKE :term",
+     {:term => "%#{params[:term]}%"}
+      ] 
+   end
+
+    @recipes = Recipe.find(:all, options)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +25,8 @@ class RecipesController < ApplicationController
   # GET /recipes/1
   # GET /recipes/1.xml
   def show
-    @recipe = Recipe.find(params[:id])
+#    @recipe = Recipe.find_by_name(params[:id])
+     @recipe = Recipe.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

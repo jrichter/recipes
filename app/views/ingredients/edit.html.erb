@@ -2,7 +2,7 @@
 
 <%= error_messages_for :ingredient %>
 
-<% form_for @ingredient  do |f| %>
+<% form_for [:recipe, @ingredient]  do |f| %>
   <p>
     <b>Name</b><br />
     <%= f.text_field :name %>
@@ -14,9 +14,9 @@
     <%= f.text_field :ing_amnt, :value => @ingredient.amounts.find(:first, :conditions => {:recipe_id => params[:recipe_id]}).ing_amnt %>
   </p>
 <% end %>
-<% fields_for :recipe do |f| %>
-  <%= f.hidden_field :id, :value => params[:recipe_id] %>
-<% end %>
+
+  <%= f.hidden_field :recipe_id %>
+
   <p>
     <%= f.submit "Update" %>
   </p>

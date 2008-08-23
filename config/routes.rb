@@ -3,7 +3,9 @@ ActionController::Routing::Routes.draw do |map|
    map.root :controller => "recipes"
 
    map.resources :recipes do |recipes|
-      recipes.resources :ingredients
+      recipes.resources :ingredients do |ingredients|
+        ingredients.resources :amounts
+      end
    end
    map.resources :ingredients do |ingredients|
       ingredients.resources :recipes
@@ -41,6 +43,6 @@ ActionController::Routing::Routes.draw do |map|
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.
-     map.connect ':controller/:action/:id'
-     map.connect ':controller/:action/:id.:format'
+  #   map.connect ':controller/:action/:id'
+  #   map.connect ':controller/:action/:id.:format'
 end
