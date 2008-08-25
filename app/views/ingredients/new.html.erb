@@ -5,7 +5,7 @@
 <% form_for [:recipe, @ingredient] do |f| %>
   <p>
     <b>Name</b><br />
-    <%= f.text_field :name %>
+    <%= text_field_with_auto_complete :ingredient, :name, {} %>
   </p>
 
 <% fields_for :amount do |f| %>

@@ -1,6 +1,7 @@
 class IngredientsController < ApplicationController
 
 before_filter :load_recipe, :except => [:index, :show, :destroy]
+auto_complete_for :ingredient, :name
 
   # GET /ingredients
   # GET /ingredients.xml
