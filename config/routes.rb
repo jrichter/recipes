@@ -13,7 +13,7 @@ ActionController::Routing::Routes.draw do |map|
    end
    
    map.auto_complete ':controller/:action', :requirements => { :action => /auto_complete_for_\S+/ },
-                                          :conditions => { :method => :get }
+                                          :conditions => { :method => :any }
 
 
 
