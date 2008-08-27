@@ -1,74 +1,87 @@
 (in /home/justin/apps/jetfive)
-                            root        /                                                    {:action=>"index", :controller=>"recipes"}
-                         recipes GET    /recipes                                             {:action=>"index", :controller=>"recipes"}
-               formatted_recipes GET    /recipes.:format                                     {:action=>"index", :controller=>"recipes"}
-                                 POST   /recipes                                             {:action=>"create", :controller=>"recipes"}
-                                 POST   /recipes.:format                                     {:action=>"create", :controller=>"recipes"}
-                      new_recipe GET    /recipes/new                                         {:action=>"new", :controller=>"recipes"}
-            formatted_new_recipe GET    /recipes/new.:format                                 {:action=>"new", :controller=>"recipes"}
-                     edit_recipe GET    /recipes/:id/edit                                    {:action=>"edit", :controller=>"recipes"}
-           formatted_edit_recipe GET    /recipes/:id/edit.:format                            {:action=>"edit", :controller=>"recipes"}
-                          recipe GET    /recipes/:id                                         {:action=>"show", :controller=>"recipes"}
-                formatted_recipe GET    /recipes/:id.:format                                 {:action=>"show", :controller=>"recipes"}
-                                 PUT    /recipes/:id                                         {:action=>"update", :controller=>"recipes"}
-                                 PUT    /recipes/:id.:format                                 {:action=>"update", :controller=>"recipes"}
-                                 DELETE /recipes/:id                                         {:action=>"destroy", :controller=>"recipes"}
-                                 DELETE /recipes/:id.:format                                 {:action=>"destroy", :controller=>"recipes"}
-              recipe_ingredients GET    /recipes/:recipe_id/ingredients                      {:action=>"index", :controller=>"ingredients"}
-    formatted_recipe_ingredients GET    /recipes/:recipe_id/ingredients.:format              {:action=>"index", :controller=>"ingredients"}
-                                 POST   /recipes/:recipe_id/ingredients                      {:action=>"create", :controller=>"ingredients"}
-                                 POST   /recipes/:recipe_id/ingredients.:format              {:action=>"create", :controller=>"ingredients"}
-           new_recipe_ingredient GET    /recipes/:recipe_id/ingredients/new                  {:action=>"new", :controller=>"ingredients"}
- formatted_new_recipe_ingredient GET    /recipes/:recipe_id/ingredients/new.:format          {:action=>"new", :controller=>"ingredients"}
-          edit_recipe_ingredient GET    /recipes/:recipe_id/ingredients/:id/edit             {:action=>"edit", :controller=>"ingredients"}
-formatted_edit_recipe_ingredient GET    /recipes/:recipe_id/ingredients/:id/edit.:format     {:action=>"edit", :controller=>"ingredients"}
-               recipe_ingredient GET    /recipes/:recipe_id/ingredients/:id                  {:action=>"show", :controller=>"ingredients"}
-     formatted_recipe_ingredient GET    /recipes/:recipe_id/ingredients/:id.:format          {:action=>"show", :controller=>"ingredients"}
-                                 PUT    /recipes/:recipe_id/ingredients/:id                  {:action=>"update", :controller=>"ingredients"}
-                                 PUT    /recipes/:recipe_id/ingredients/:id.:format          {:action=>"update", :controller=>"ingredients"}
-                                 DELETE /recipes/:recipe_id/ingredients/:id                  {:action=>"destroy", :controller=>"ingredients"}
-                                 DELETE /recipes/:recipe_id/ingredients/:id.:format          {:action=>"destroy", :controller=>"ingredients"}
-                     ingredients GET    /ingredients                                         {:action=>"index", :controller=>"ingredients"}
-           formatted_ingredients GET    /ingredients.:format                                 {:action=>"index", :controller=>"ingredients"}
-                                 POST   /ingredients                                         {:action=>"create", :controller=>"ingredients"}
-                                 POST   /ingredients.:format                                 {:action=>"create", :controller=>"ingredients"}
-                  new_ingredient GET    /ingredients/new                                     {:action=>"new", :controller=>"ingredients"}
-        formatted_new_ingredient GET    /ingredients/new.:format                             {:action=>"new", :controller=>"ingredients"}
-                 edit_ingredient GET    /ingredients/:id/edit                                {:action=>"edit", :controller=>"ingredients"}
-       formatted_edit_ingredient GET    /ingredients/:id/edit.:format                        {:action=>"edit", :controller=>"ingredients"}
-                      ingredient GET    /ingredients/:id                                     {:action=>"show", :controller=>"ingredients"}
-            formatted_ingredient GET    /ingredients/:id.:format                             {:action=>"show", :controller=>"ingredients"}
-                                 PUT    /ingredients/:id                                     {:action=>"update", :controller=>"ingredients"}
-                                 PUT    /ingredients/:id.:format                             {:action=>"update", :controller=>"ingredients"}
-                                 DELETE /ingredients/:id                                     {:action=>"destroy", :controller=>"ingredients"}
-                                 DELETE /ingredients/:id.:format                             {:action=>"destroy", :controller=>"ingredients"}
-              ingredient_recipes GET    /ingredients/:ingredient_id/recipes                  {:action=>"index", :controller=>"recipes"}
-    formatted_ingredient_recipes GET    /ingredients/:ingredient_id/recipes.:format          {:action=>"index", :controller=>"recipes"}
-                                 POST   /ingredients/:ingredient_id/recipes                  {:action=>"create", :controller=>"recipes"}
-                                 POST   /ingredients/:ingredient_id/recipes.:format          {:action=>"create", :controller=>"recipes"}
-           new_ingredient_recipe GET    /ingredients/:ingredient_id/recipes/new              {:action=>"new", :controller=>"recipes"}
- formatted_new_ingredient_recipe GET    /ingredients/:ingredient_id/recipes/new.:format      {:action=>"new", :controller=>"recipes"}
-          edit_ingredient_recipe GET    /ingredients/:ingredient_id/recipes/:id/edit         {:action=>"edit", :controller=>"recipes"}
-formatted_edit_ingredient_recipe GET    /ingredients/:ingredient_id/recipes/:id/edit.:format {:action=>"edit", :controller=>"recipes"}
-               ingredient_recipe GET    /ingredients/:ingredient_id/recipes/:id              {:action=>"show", :controller=>"recipes"}
-     formatted_ingredient_recipe GET    /ingredients/:ingredient_id/recipes/:id.:format      {:action=>"show", :controller=>"recipes"}
-                                 PUT    /ingredients/:ingredient_id/recipes/:id              {:action=>"update", :controller=>"recipes"}
-                                 PUT    /ingredients/:ingredient_id/recipes/:id.:format      {:action=>"update", :controller=>"recipes"}
-                                 DELETE /ingredients/:ingredient_id/recipes/:id              {:action=>"destroy", :controller=>"recipes"}
-                                 DELETE /ingredients/:ingredient_id/recipes/:id.:format      {:action=>"destroy", :controller=>"recipes"}
-              ingredient_amounts GET    /ingredients/:ingredient_id/amounts                  {:action=>"index", :controller=>"amounts"}
-    formatted_ingredient_amounts GET    /ingredients/:ingredient_id/amounts.:format          {:action=>"index", :controller=>"amounts"}
-                                 POST   /ingredients/:ingredient_id/amounts                  {:action=>"create", :controller=>"amounts"}
-                                 POST   /ingredients/:ingredient_id/amounts.:format          {:action=>"create", :controller=>"amounts"}
-           new_ingredient_amount GET    /ingredients/:ingredient_id/amounts/new              {:action=>"new", :controller=>"amounts"}
- formatted_new_ingredient_amount GET    /ingredients/:ingredient_id/amounts/new.:format      {:action=>"new", :controller=>"amounts"}
-          edit_ingredient_amount GET    /ingredients/:ingredient_id/amounts/:id/edit         {:action=>"edit", :controller=>"amounts"}
-formatted_edit_ingredient_amount GET    /ingredients/:ingredient_id/amounts/:id/edit.:format {:action=>"edit", :controller=>"amounts"}
-               ingredient_amount GET    /ingredients/:ingredient_id/amounts/:id              {:action=>"show", :controller=>"amounts"}
-     formatted_ingredient_amount GET    /ingredients/:ingredient_id/amounts/:id.:format      {:action=>"show", :controller=>"amounts"}
-                                 PUT    /ingredients/:ingredient_id/amounts/:id              {:action=>"update", :controller=>"amounts"}
-                                 PUT    /ingredients/:ingredient_id/amounts/:id.:format      {:action=>"update", :controller=>"amounts"}
-                                 DELETE /ingredients/:ingredient_id/amounts/:id              {:action=>"destroy", :controller=>"amounts"}
-                                 DELETE /ingredients/:ingredient_id/amounts/:id.:format      {:action=>"destroy", :controller=>"amounts"}
-                                        /:controller/:action/:id                             
-                                        /:controller/:action/:id.:format                     
+                                   root        /                                                                       {:action=>"index", :controller=>"recipes"}
+                                recipes GET    /recipes                                                                {:action=>"index", :controller=>"recipes"}
+                      formatted_recipes GET    /recipes.:format                                                        {:action=>"index", :controller=>"recipes"}
+                                        POST   /recipes                                                                {:action=>"create", :controller=>"recipes"}
+                                        POST   /recipes.:format                                                        {:action=>"create", :controller=>"recipes"}
+                             new_recipe GET    /recipes/new                                                            {:action=>"new", :controller=>"recipes"}
+                   formatted_new_recipe GET    /recipes/new.:format                                                    {:action=>"new", :controller=>"recipes"}
+                            edit_recipe GET    /recipes/:id/edit                                                       {:action=>"edit", :controller=>"recipes"}
+                  formatted_edit_recipe GET    /recipes/:id/edit.:format                                               {:action=>"edit", :controller=>"recipes"}
+                                 recipe GET    /recipes/:id                                                            {:action=>"show", :controller=>"recipes"}
+                       formatted_recipe GET    /recipes/:id.:format                                                    {:action=>"show", :controller=>"recipes"}
+                                        PUT    /recipes/:id                                                            {:action=>"update", :controller=>"recipes"}
+                                        PUT    /recipes/:id.:format                                                    {:action=>"update", :controller=>"recipes"}
+                                        DELETE /recipes/:id                                                            {:action=>"destroy", :controller=>"recipes"}
+                                        DELETE /recipes/:id.:format                                                    {:action=>"destroy", :controller=>"recipes"}
+                     recipe_ingredients GET    /recipes/:recipe_id/ingredients                                         {:action=>"index", :controller=>"ingredients"}
+           formatted_recipe_ingredients GET    /recipes/:recipe_id/ingredients.:format                                 {:action=>"index", :controller=>"ingredients"}
+                                        POST   /recipes/:recipe_id/ingredients                                         {:action=>"create", :controller=>"ingredients"}
+                                        POST   /recipes/:recipe_id/ingredients.:format                                 {:action=>"create", :controller=>"ingredients"}
+                  new_recipe_ingredient GET    /recipes/:recipe_id/ingredients/new                                     {:action=>"new", :controller=>"ingredients"}
+        formatted_new_recipe_ingredient GET    /recipes/:recipe_id/ingredients/new.:format                             {:action=>"new", :controller=>"ingredients"}
+                 edit_recipe_ingredient GET    /recipes/:recipe_id/ingredients/:id/edit                                {:action=>"edit", :controller=>"ingredients"}
+       formatted_edit_recipe_ingredient GET    /recipes/:recipe_id/ingredients/:id/edit.:format                        {:action=>"edit", :controller=>"ingredients"}
+                      recipe_ingredient GET    /recipes/:recipe_id/ingredients/:id                                     {:action=>"show", :controller=>"ingredients"}
+            formatted_recipe_ingredient GET    /recipes/:recipe_id/ingredients/:id.:format                             {:action=>"show", :controller=>"ingredients"}
+                                        PUT    /recipes/:recipe_id/ingredients/:id                                     {:action=>"update", :controller=>"ingredients"}
+                                        PUT    /recipes/:recipe_id/ingredients/:id.:format                             {:action=>"update", :controller=>"ingredients"}
+                                        DELETE /recipes/:recipe_id/ingredients/:id                                     {:action=>"destroy", :controller=>"ingredients"}
+                                        DELETE /recipes/:recipe_id/ingredients/:id.:format                             {:action=>"destroy", :controller=>"ingredients"}
+              recipe_ingredient_amounts GET    /recipes/:recipe_id/ingredients/:ingredient_id/amounts                  {:action=>"index", :controller=>"amounts"}
+    formatted_recipe_ingredient_amounts GET    /recipes/:recipe_id/ingredients/:ingredient_id/amounts.:format          {:action=>"index", :controller=>"amounts"}
+                                        POST   /recipes/:recipe_id/ingredients/:ingredient_id/amounts                  {:action=>"create", :controller=>"amounts"}
+                                        POST   /recipes/:recipe_id/ingredients/:ingredient_id/amounts.:format          {:action=>"create", :controller=>"amounts"}
+           new_recipe_ingredient_amount GET    /recipes/:recipe_id/ingredients/:ingredient_id/amounts/new              {:action=>"new", :controller=>"amounts"}
+ formatted_new_recipe_ingredient_amount GET    /recipes/:recipe_id/ingredients/:ingredient_id/amounts/new.:format      {:action=>"new", :controller=>"amounts"}
+          edit_recipe_ingredient_amount GET    /recipes/:recipe_id/ingredients/:ingredient_id/amounts/:id/edit         {:action=>"edit", :controller=>"amounts"}
+formatted_edit_recipe_ingredient_amount GET    /recipes/:recipe_id/ingredients/:ingredient_id/amounts/:id/edit.:format {:action=>"edit", :controller=>"amounts"}
+               recipe_ingredient_amount GET    /recipes/:recipe_id/ingredients/:ingredient_id/amounts/:id              {:action=>"show", :controller=>"amounts"}
+     formatted_recipe_ingredient_amount GET    /recipes/:recipe_id/ingredients/:ingredient_id/amounts/:id.:format      {:action=>"show", :controller=>"amounts"}
+                                        PUT    /recipes/:recipe_id/ingredients/:ingredient_id/amounts/:id              {:action=>"update", :controller=>"amounts"}
+                                        PUT    /recipes/:recipe_id/ingredients/:ingredient_id/amounts/:id.:format      {:action=>"update", :controller=>"amounts"}
+                                        DELETE /recipes/:recipe_id/ingredients/:ingredient_id/amounts/:id              {:action=>"destroy", :controller=>"amounts"}
+                                        DELETE /recipes/:recipe_id/ingredients/:ingredient_id/amounts/:id.:format      {:action=>"destroy", :controller=>"amounts"}
+                            ingredients GET    /ingredients                                                            {:action=>"index", :controller=>"ingredients"}
+                  formatted_ingredients GET    /ingredients.:format                                                    {:action=>"index", :controller=>"ingredients"}
+                                        POST   /ingredients                                                            {:action=>"create", :controller=>"ingredients"}
+                                        POST   /ingredients.:format                                                    {:action=>"create", :controller=>"ingredients"}
+                         new_ingredient GET    /ingredients/new                                                        {:action=>"new", :controller=>"ingredients"}
+               formatted_new_ingredient GET    /ingredients/new.:format                                                {:action=>"new", :controller=>"ingredients"}
+                        edit_ingredient GET    /ingredients/:id/edit                                                   {:action=>"edit", :controller=>"ingredients"}
+              formatted_edit_ingredient GET    /ingredients/:id/edit.:format                                           {:action=>"edit", :controller=>"ingredients"}
+                             ingredient GET    /ingredients/:id                                                        {:action=>"show", :controller=>"ingredients"}
+                   formatted_ingredient GET    /ingredients/:id.:format                                                {:action=>"show", :controller=>"ingredients"}
+                                        PUT    /ingredients/:id                                                        {:action=>"update", :controller=>"ingredients"}
+                                        PUT    /ingredients/:id.:format                                                {:action=>"update", :controller=>"ingredients"}
+                                        DELETE /ingredients/:id                                                        {:action=>"destroy", :controller=>"ingredients"}
+                                        DELETE /ingredients/:id.:format                                                {:action=>"destroy", :controller=>"ingredients"}
+                     ingredient_recipes GET    /ingredients/:ingredient_id/recipes                                     {:action=>"index", :controller=>"recipes"}
+           formatted_ingredient_recipes GET    /ingredients/:ingredient_id/recipes.:format                             {:action=>"index", :controller=>"recipes"}
+                                        POST   /ingredients/:ingredient_id/recipes                                     {:action=>"create", :controller=>"recipes"}
+                                        POST   /ingredients/:ingredient_id/recipes.:format                             {:action=>"create", :controller=>"recipes"}
+                  new_ingredient_recipe GET    /ingredients/:ingredient_id/recipes/new                                 {:action=>"new", :controller=>"recipes"}
+        formatted_new_ingredient_recipe GET    /ingredients/:ingredient_id/recipes/new.:format                         {:action=>"new", :controller=>"recipes"}
+                 edit_ingredient_recipe GET    /ingredients/:ingredient_id/recipes/:id/edit                            {:action=>"edit", :controller=>"recipes"}
+       formatted_edit_ingredient_recipe GET    /ingredients/:ingredient_id/recipes/:id/edit.:format                    {:action=>"edit", :controller=>"recipes"}
+                      ingredient_recipe GET    /ingredients/:ingredient_id/recipes/:id                                 {:action=>"show", :controller=>"recipes"}
+            formatted_ingredient_recipe GET    /ingredients/:ingredient_id/recipes/:id.:format                         {:action=>"show", :controller=>"recipes"}
+                                        PUT    /ingredients/:ingredient_id/recipes/:id                                 {:action=>"update", :controller=>"recipes"}
+                                        PUT    /ingredients/:ingredient_id/recipes/:id.:format                         {:action=>"update", :controller=>"recipes"}
+                                        DELETE /ingredients/:ingredient_id/recipes/:id                                 {:action=>"destroy", :controller=>"recipes"}
+                                        DELETE /ingredients/:ingredient_id/recipes/:id.:format                         {:action=>"destroy", :controller=>"recipes"}
+                     ingredient_amounts GET    /ingredients/:ingredient_id/amounts                                     {:action=>"index", :controller=>"amounts"}
+           formatted_ingredient_amounts GET    /ingredients/:ingredient_id/amounts.:format                             {:action=>"index", :controller=>"amounts"}
+                                        POST   /ingredients/:ingredient_id/amounts                                     {:action=>"create", :controller=>"amounts"}
+                                        POST   /ingredients/:ingredient_id/amounts.:format                             {:action=>"create", :controller=>"amounts"}
+                  new_ingredient_amount GET    /ingredients/:ingredient_id/amounts/new                                 {:action=>"new", :controller=>"amounts"}
+        formatted_new_ingredient_amount GET    /ingredients/:ingredient_id/amounts/new.:format                         {:action=>"new", :controller=>"amounts"}
+                 edit_ingredient_amount GET    /ingredients/:ingredient_id/amounts/:id/edit                            {:action=>"edit", :controller=>"amounts"}
+       formatted_edit_ingredient_amount GET    /ingredients/:ingredient_id/amounts/:id/edit.:format                    {:action=>"edit", :controller=>"amounts"}
+                      ingredient_amount GET    /ingredients/:ingredient_id/amounts/:id                                 {:action=>"show", :controller=>"amounts"}
+            formatted_ingredient_amount GET    /ingredients/:ingredient_id/amounts/:id.:format                         {:action=>"show", :controller=>"amounts"}
+                                        PUT    /ingredients/:ingredient_id/amounts/:id                                 {:action=>"update", :controller=>"amounts"}
+                                        PUT    /ingredients/:ingredient_id/amounts/:id.:format                         {:action=>"update", :controller=>"amounts"}
+                                        DELETE /ingredients/:ingredient_id/amounts/:id                                 {:action=>"destroy", :controller=>"amounts"}
+                                        DELETE /ingredients/:ingredient_id/amounts/:id.:format                         {:action=>"destroy", :controller=>"amounts"}
+                          auto_complete GET    /:controller/:action                                                    

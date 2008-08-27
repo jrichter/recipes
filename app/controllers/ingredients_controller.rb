@@ -79,7 +79,9 @@ auto_complete_for :ingredient, :name
   end
 
   def load_recipe
-    @recipe = Recipe.find(params[:recipe_id])
+    if params[:recipe_id]
+      @recipe = Recipe.find(params[:recipe_id])
+    end
   end
 
   # DELETE /ingredients/1

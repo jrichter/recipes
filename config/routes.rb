@@ -7,13 +7,13 @@ ActionController::Routing::Routes.draw do |map|
         ingredients.resources :amounts
       end
    end
-   map.resources :ingredients do |ingredients|
+   map.resources :ingredients, :collection => {:auto_complete_for_ingredient_name => :get } do |ingredients|
       ingredients.resources :recipes
       ingredients.resources :amounts
    end
-   
-   map.auto_complete ':controller/:action', :requirements => { :action => /auto_complete_for_\S+/ },
-                                          :conditions => { :method => :any }
+ 
+  
+#   map.auto_complete ':controller/:action', :requirements => { :action => /auto_complete_for_\S+/ },:conditions => { :method => :get }
 
 
 
