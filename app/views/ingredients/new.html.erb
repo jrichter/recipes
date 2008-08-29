@@ -3,10 +3,10 @@
 <%= error_messages_for :ingredient %>
 
 
-<% form_for [:recipe, @ingredient] do |f| %>
+<% form_for new_recipe_ingredient_path(@recipe) do |f| %>
   <p>
     <b>Name</b><br />
-    <%= text_field_with_auto_complete :ingredient, :name, {}, {:method => :get}%>
+    <%=text_field_with_auto_complete :ingredient, :name, {}, {:method => :get}%>
   </p>
 
 <% fields_for :amount do |f| %>

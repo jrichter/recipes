@@ -39,6 +39,7 @@ auto_complete_for :ingredient, :name
   # GET /ingredients/1/edit
   def edit
     @ingredient = Ingredient.find(params[:id])
+    @amount= @ingredient.amounts.find_by_recipe_id(@recipe)
   end
 
   # POST /ingredients

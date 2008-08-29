@@ -1,17 +1,17 @@
-<h1>New Ingredient</h1>
+<h1>Edit Ingredient</h1>
 
 <%= error_messages_for :ingredient %>
 
-<% form_for [:recipe, @ingredient]  do |f| %>
+<% form_for [@recipe, @ingredient]  do |f| %>
   <p>
     <b>Name</b><br />
     <%= f.text_field :name %>
   </p>
 
-<% fields_for :amount do |f| %>
+<% fields_for @amount do |f| %>
   <p>
     <b>Amount</b><br />
-    <%= f.text_field :ing_amnt, :value => @ingredient.amounts.find(:first, :conditions => {:recipe_id => params[:recipe_id]}).ing_amnt %>
+    <%= f.text_field :ing_amnt %>
   </p>
 <% end %>
 
