@@ -86,8 +86,15 @@ class RecipesController < ApplicationController
 
   # DELETE /recipes/1
   # DELETE /recipes/1.xml
+  # Deletes the amounts and ingredients if there are no other recipes that share that ingredient
   def destroy
     @recipe = Recipe.find(params[:id])
+    @amounts = @recipe.amounts
+    @amounts.each do |amount|
+      ingredient = amount.ingredient
+      amount.destroy
+      ingredient.destroy if ingredient.recipes.length == 0
+    end
     @recipe.destroy
 
     respond_to do |format|

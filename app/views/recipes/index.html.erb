@@ -24,7 +24,7 @@
     <td><%=h recipe.directions %></td>
     <td><%= link_to 'Show', recipe %></td>
     <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
-    <td><%= link_to 'Destroy', recipe, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', recipe, :confirm => 'This deletes everything associated with this recipe as well as the recipe itself.  Only do this if you are certain.', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
