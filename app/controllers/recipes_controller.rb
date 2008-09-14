@@ -1,5 +1,8 @@
 class RecipesController < ApplicationController
-#before_create :create_permalink
+in_place_edit_for :recipe, :in_place_name
+in_place_edit_for :recipe, :in_place_author
+in_place_edit_for :recipe, :in_place_directions
+in_place_edit_for :recipe, :in_place_oven_temp
 
   # GET /recipes
   # GET /recipes.xml

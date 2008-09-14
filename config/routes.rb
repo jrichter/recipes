@@ -11,6 +11,11 @@ ActionController::Routing::Routes.draw do |map|
       ingredients.resources :recipes
       ingredients.resources :amounts
    end
+   
+   map.resources :recipes, :member => {:set_recipe_in_place_name => :any}
+   map.resources :recipes, :member => {:set_recipe_in_place_author => :any}
+   map.resources :recipes, :member => {:set_recipe_in_place_directions => :any}
+   map.resources :recipes, :member => {:set_recipe_in_place_oven_temp => :any}
 
 
 

@@ -2,30 +2,31 @@
 
 <%= error_messages_for :recipe %>
 
-
+<% form_for(@recipe) do |f| %>
   <p>
     <b>Name</b><br />
-    <%= in_place_editor_field :recipe, :in_place_name %>
-
+    <%= f.text_field :name %>
   </p>
 
   <p>
     <b>Author</b><br />
-    <%= in_place_editor_field :recipe, :in_place_author %>
+    <%= f.text_field :author %>
   </p>
 
   <p>
     <b>Oven temp</b><br />
-    <%= in_place_editor_field :recipe, :in_place_oven_temp %>
+    <%= f.text_field :oven_temp %>
   </p>
 
   <p>
     <b>Directions</b><br />
-    <%= in_place_editor_field :recipe, :in_place_directions, {}, {:rows => 10} %>
+    <%= f.text_area :directions %>
   </p>
 
   <p>
+    <%= f.submit "Update" %>
   </p>
+<% end %>
  
 <%= link_to 'Show', @recipe %> |
 <%= link_to 'Back', recipes_path %>

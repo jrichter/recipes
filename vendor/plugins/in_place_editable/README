@@ -1,0 +1,34 @@
+InPlaceEditable
+===============
+
+When you use the in_place_editing plugin by David Heinemeier Hansson, it has some minor problems.
+This plugin helps you with this.
+
+1.  It rejects entered data when it makes the object invalid.
+2.  When the value is blank, it adds dash '-' to keep it clickable.
+
+It does this by making proxies for the attributes in your model.
+These attributes start with 'in_place_' followed by the attribute name.
+
+Don't forget to install the in_place_editing plugin!
+
+
+Example
+=======
+
+  # In your model:
+  class User < ActiveRecord::Base
+    in_place_editable_columns :name, :email
+  end
+  
+  # In your controller:
+  class UsersController < ApplicationController
+    in_place_edit_for :user, :in_place_name
+    in_place_edit_for :user, :in_place_email
+  end
+
+  # In your view:
+  <%= in_place_editor_field :user, :in_place_name %>
+  <%= in_place_editor_field :user, :in_place_email %>
+
+Copyright (c) 2008 Iain Hecker <http://iain.nl/>, released under the MIT license
