@@ -24,8 +24,39 @@
     <%= in_place_editor_field :recipe, :in_place_directions, {}, {:rows => 10} %>
   </p>
 
-  <p>
+  <p id="ingredients">
+<b>Ingredients:</b><br/>
+<% @recipe.amounts.each do |amount| %>
+  <%=h amount.ing_amnt %> <%= link_to amount.ingredient.name, amount.ingredient %> 
+  <%= link_to 'Remove', recipe_ingredient_amount_path(@recipe,amount.ingredient,amount), :confirm => 'Are you sure?', :method => :delete %>
+  <br/>
+<% end %>
   </p>
+  <p id="add_link"><%= link_to_function("Add an Ingredient",
+                                        "Element.remove('add_link'); 
+                                         Element.show('add_ingredient')")%>
+                                         </p>
+  <div id="add_ingredient" style="display:none;">
+  <% form_remote_for Ingredient.new, :url => recipe_ingredients_path(@recipe), :update => "ingredients", :position => :bottom do |f| %>
+  <p>
+    <b>Name</b><br />
+    <%=text_field_with_auto_complete :ingredient, :name, {}, {:method => :get}, [:ingredients] %> </p>
+
+<% fields_for :amount do |f| %>
+  <p>
+    <b>Amount</b><br />
+    <%= f.text_field :ing_amnt %>
+  </p>
+<% end %>
+
+  <%= f.hidden_field :recipe_id %>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+
+<% end %>
+  </div>
+
  
 <%= link_to 'Show', @recipe %> |
 <%= link_to 'Back', recipes_path %>

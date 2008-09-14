@@ -52,7 +52,7 @@ auto_complete_for :ingredient, :name
     respond_to do |format|
       if @ingredient.save and Amount.create(params["amount"].merge(:ingredient_id => @ingredient.id, :recipe_id => @recipe.id))
         flash[:notice] = 'Ingredient was successfully created.'
-        format.html { redirect_to(@recipe) }
+        format.html {render :partial => 'list_ingredients', :object => @ingredient}
         format.xml  { render :xml => @ingredient, :status => :created, :location => @ingredient }
       else
         format.html { render :action => "new" }

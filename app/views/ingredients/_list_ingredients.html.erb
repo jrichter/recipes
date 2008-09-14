@@ -1,0 +1,5 @@
+<% amount = @ingredient.amounts.find_by_recipe_id(@recipe.id) %>
+  <%=h amount.ing_amnt %> <%= link_to amount.ingredient.name, amount.ingredient %>
+  <%= link_to 'Remove', recipe_ingredient_amount_path(@recipe,amount.ingredient,amount), :confirm => 'Are you sure?', :method => :delete %>
+  <br/>
+

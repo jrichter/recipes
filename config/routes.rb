@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
    map.root :controller => "recipes"
 
    map.resources :recipes do |recipes|
-      recipes.resources :ingredients do |ingredients|
+      recipes.resources :ingredients, :collection => {:auto_complete_for_ingredient_name => :get } do |ingredients|
         ingredients.resources :amounts
       end
    end
@@ -16,6 +16,7 @@ ActionController::Routing::Routes.draw do |map|
    map.resources :recipes, :member => {:set_recipe_in_place_author => :any}
    map.resources :recipes, :member => {:set_recipe_in_place_directions => :any}
    map.resources :recipes, :member => {:set_recipe_in_place_oven_temp => :any}
+
 
 
 
