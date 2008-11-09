@@ -16,6 +16,13 @@
 </div>
 <div id='wrap'>
       <div id='nav'>
+        <div class='search'>
+          <% form_tag(recipes_path, :method => "get") do %>
+            <label>Search Term</label>
+            <%= text_field_tag "term", params[:term] %>
+            <%= submit_tag "Search" %>
+          <% end %>
+        </div>
         <ul>
           <li class='first'><a href='/ingredients'>Ingredients</a></li>
         </ul>

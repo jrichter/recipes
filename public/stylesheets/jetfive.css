@@ -46,7 +46,7 @@ p {
   margin:4px auto;
   background-color:#fff;
   color:#000;
-  text-align:right;
+  text-align:left;
 }
 #nav ul {
   padding:0;
@@ -64,15 +64,19 @@ p {
 }
 #nav a {
   text-decoration:none;
-  color:#000;
+}
+.search {
+  float: right;
+  padding: 5px;
 }
 #mainPhoto {
 }
 #content {
-  width:600px;
+  width:590px;
   margin:4px auto;
   background-color:#fff;
   text-align:left;
+  padding: 5px;
 }
 #contentPad {
   padding:10px;
