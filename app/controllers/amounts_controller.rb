@@ -1,4 +1,5 @@
 class AmountsController < ApplicationController
+in_place_edit_for :amount, :ing_amnt
 
 before_filter :load_recipe_ingredient
 

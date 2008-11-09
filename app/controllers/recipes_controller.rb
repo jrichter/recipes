@@ -3,6 +3,7 @@ in_place_edit_for :recipe, :in_place_name
 in_place_edit_for :recipe, :in_place_author
 in_place_edit_for :recipe, :in_place_directions
 in_place_edit_for :recipe, :in_place_oven_temp
+in_place_edit_for :amount, :ing_amnt
 
   # GET /recipes
   # GET /recipes.xml
@@ -51,6 +52,7 @@ in_place_edit_for :recipe, :in_place_oven_temp
   # GET /recipes/1/edit
   def edit
     @recipe = Recipe.find(params[:id])
+    @amounts = @recipe.amounts
   end
 
   # POST /recipes
@@ -61,7 +63,7 @@ in_place_edit_for :recipe, :in_place_oven_temp
     respond_to do |format|
       if @recipe.save
         flash[:notice] = 'Recipe was successfully created.'
-        format.html { redirect_to(@recipe) }
+        format.html { render :action => "edit" }
         format.xml  { render :xml => @recipe, :status => :created, :location => @recipe }
       else
         format.html { render :action => "new" }

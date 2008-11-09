@@ -1,4 +1,4 @@
-<h1>Editing recipe</h1>
+<h2>Editing recipe</h2>
 
 <%= error_messages_for :recipe %>
 
@@ -23,11 +23,10 @@
     <b>Directions</b><br />
     <%= in_place_editor_field :recipe, :in_place_directions, {}, {:rows => 10} %>
   </p>
-
-  <p id="ingredients">
+   <p id="ingredients">
 <b>Ingredients:</b><br/>
 <% @recipe.amounts.each do |amount| %>
-  <%=h amount.ing_amnt %> <%= link_to amount.ingredient.name, amount.ingredient %> 
+  <%=h amount.ing_amnt %> <%= link_to amount.ingredient.name, amount.ingredient %>
   <%= link_to 'Remove', recipe_ingredient_amount_path(@recipe,amount.ingredient,amount), :confirm => 'Are you sure?', :method => :delete %>
   <br/>
 <% end %>

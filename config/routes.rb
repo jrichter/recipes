@@ -4,7 +4,7 @@ ActionController::Routing::Routes.draw do |map|
 
    map.resources :recipes do |recipes|
       recipes.resources :ingredients, :collection => {:auto_complete_for_ingredient_name => :get } do |ingredients|
-        ingredients.resources :amounts
+        ingredients.resources :amounts, :member => {:set_amount_ing_amnt => :any}
       end
    end
    map.resources :ingredients, :collection => {:auto_complete_for_ingredient_name => :get } do |ingredients|

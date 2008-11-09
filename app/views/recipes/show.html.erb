@@ -20,12 +20,10 @@
 <p>
   <b>Ingredients:</b><br/>
   <% @recipe.amounts.each do |amount| %>
-  <%=h amount.ing_amnt %> <%= link_to amount.ingredient.name, amount.ingredient %> <%= link_to 'Edit',edit_recipe_ingredient_path(@recipe,amount.ingredient ) %>
-<%= link_to 'Remove', recipe_ingredient_amount_path(@recipe,amount.ingredient,amount), :confirm => 'Are you sure?', :method => :delete %>
+  <%=h amount.ing_amnt %> <%= link_to amount.ingredient.name, amount.ingredient %>
 <br/>
   <% end %>
 </p>
 
-<%= link_to 'New Ingredient', new_recipe_ingredient_path(@recipe) %> |
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %>
