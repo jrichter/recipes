@@ -20,10 +20,11 @@ p {
   text-align:center; /*ie center*/
 }
 #header {
-  width:590px;
+  width:600px;
   margin:0;
   text-align:right;
   color:#FFF;
+  height: 50px;
 }
 #header h1{
   margin:0; 
@@ -33,6 +34,16 @@ p {
 }
 #header h1 span {
   color:#780000;
+}
+#header .big {
+  font-size: 40px;
+  position:absolute;
+  margin: -3px -15px auto;
+  color: #fff;
+}
+#header .slogan {
+  padding: 0 34px 1px 0;
+  font-size: 105%;
 }
 #wrap {
   width:610px;
