@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
     http.use_ssl = true
     path = '/accounts/AuthSubTokenInfo'
 
-    headers = google_header('www.jetfive.com', token)
+    headers = google_header('https://www.google.com#{path}', token)
 
     resp, data = http.get(path, headers)
 
