@@ -20,8 +20,8 @@ class SessionsController < ApplicationController
     http = Net::HTTP.new('www.google.com', 443)
     http.use_ssl = true
     path = '/accounts/AuthSubTokenInfo'
-
-    headers = google_header('https://www.google.com#{path}', token)
+    full_path = 'https://www.google.com' + path
+    headers = google_header(full_path, token)
 
     resp, data = http.get(path, headers)
 
