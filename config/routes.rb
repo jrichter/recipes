@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :sessions
+
+  map.resources :users
+
 
    map.root :controller => "recipes"
 

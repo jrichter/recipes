@@ -1,0 +1,2 @@
+openssl req -x509 -nodes -days 365 -newkey rsa:1024 -sha1 -subj '/C=US/ST=CA/L=Mountain View/CN=www.example.com' -keyout  myrsakey.pem -out certs/myrsacert.pem
+

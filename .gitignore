@@ -2,5 +2,8 @@ tmp/*
 log/*.log
 config/database.yml
 config/database.~
+config/jetrsakey.pem
+config/*.pem
 jot
 db/*.db
+
