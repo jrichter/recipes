@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
     @code =  'Code = ' + resp.code
     @msg =  'Message = ' + resp.message
     @data = data
-    
+    @token = token
     #get(google_header(url, token))
   end
 
