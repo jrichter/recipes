@@ -19,9 +19,7 @@ class SessionsController < ApplicationController
     http.use_ssl = true
     path = '/accounts/AuthSubTokenInfo'
 
-    headers = {
-      'Authorization' => "AuthSub token=\"#{token}\""
-    }
+    headers = google_header('www.jetfive.com', token)
 
     resp, data = http.get(path, headers)
 
@@ -29,7 +27,6 @@ class SessionsController < ApplicationController
     @msg =  'Message = ' + resp.message
     @data = data
     @token = token
-    #get(google_header(url, token))
   end
 
   def google_header url, token
