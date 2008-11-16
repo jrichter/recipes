@@ -1,17 +1,36 @@
+require 'net/http'
+require 'net/https'
 class SessionsController < ApplicationController
   
   #GET
   def new
-    redirect_to 'https://www.google.com/accounts/AuthSubRequest?scope=http%3A%2F%2Fwww.google.com%2Fcalendar%2Ffeeds%2F&session=1&secure=1&next=http%3A%2F%2Fwww.jetfive.com'
+    redirect_to 'https://www.google.com/accounts/AuthSubRequest?scope=http%3A%2F%2Fwww.google.com%2Fcalendar%2Ffeeds%2F&session=1&secure=1&next=http%3A%2F%2Fwww.jetfive.com/login'
   end
   
   #POST
   def create
     @session = Session.new
-    
-    #get(google_header(url,token))
   end
 
+  def login
+    token = params[:token] 
+
+    http = Net::HTTP.new('www.google.com', 443)
+    http.use_ssl = true
+    path = '/accounts/AuthSubTokenInfo'
+
+    headers = {
+      'Authorization' => "AuthSub token=\"#{token}\""
+    }
+
+    resp, data = http.get(path, headers)
+
+    puts 'Code = ' + resp.code
+    puts 'Message = ' + resp.message
+    puts data 
+    
+    #get(google_header(url, token))
+  end
 
   def google_header url, token
     time = Time.now.to_i.to_s
