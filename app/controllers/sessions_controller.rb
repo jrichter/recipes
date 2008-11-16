@@ -29,5 +29,3 @@ class SessionsController < ApplicationController
   end 
 
 end
-
- <meta name="verify-v1" content="NmMeXo9TOd80XYsMd6SOjKvJ4+rf7gMEFLV++QehvnM=" />   
