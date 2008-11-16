@@ -34,7 +34,7 @@ class SessionsController < ApplicationController
     nonce = OpenSSL::BN.rand_range(2**64)
     data = "GET #{url} #{time} #{nonce}"
 
-    key = OpenSSL::PKey::RSA.new(File.read("#{RAILS/config/jetrsakey.pem"))
+    key = OpenSSL::PKey::RSA.new(File.read("#{RAILS_ROOT}/config/jetrsakey.pem"))
     sig = key.sign(OpenSSL::Digest::SHA1.new, (data))
     sig = Base64.b64encode(sig).gsub(/\n/, '')
 
