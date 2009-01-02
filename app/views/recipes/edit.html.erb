@@ -22,17 +22,17 @@
   <p>
     <b>Directions</b><br />
     <%= in_place_editor_field :recipe, :in_place_directions, {}, {:rows => 10} %>
-  </p>
+  </p> 
    <p id="ingredients">
 <b>Ingredients:</b><br/>
 <% @recipe.amounts.each do |amount| %>
-  <%=h amount.ing_amnt %> <%= link_to amount.ingredient.name, amount.ingredient %>
+  <%= in_place_editor_field :amount, :ing_amnt, {:fall_back => amount} %>  <%= link_to amount.ingredient.name, amount.ingredient %>
   <%= link_to 'Remove', recipe_ingredient_amount_path(@recipe,amount.ingredient,amount), :confirm => 'Are you sure?', :method => :delete %>
   <br/>
 <% end %>
   </p>
   <p id="add_link"><%= link_to_function("Add an Ingredient",
-                                        "Element.remove('add_link'); 
+                                        "Element.hide('add_link'); 
                                          Element.show('add_ingredient')")%>
                                          </p>
   <div id="add_ingredient" style="display:none;">
@@ -50,7 +50,8 @@
 
   <%= f.hidden_field :recipe_id %>
   <p>
-    <%= f.submit "Create" %>
+    <%= f.submit "Create", :onclick => "Element.show('add_link'); 
+                                         Element.hide('add_ingredient')" %>    
   </p>
 
 <% end %>

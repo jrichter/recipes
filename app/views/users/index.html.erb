@@ -1,0 +1,19 @@
+  
+<h1>Listing users</h1>
+
+<% @users.each do |user| %>
+<% if user.sessions.size > 0 %> 
+<p class="logged_in">
+<% else %>
+<p class="logged_out">
+<% end %>
+
+Name: <%=h user.name %><br/>
+Email: <%=h user.email %><br/>
+    <%= link_to 'Show', user %> |
+    <%= link_to 'Edit', edit_user_path(user) %>
+</p>
+
+<% end %>
+
+

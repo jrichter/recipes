@@ -1,0 +1,22 @@
+
+<p>
+Login or Signup
+<br />
+<%= link_to 'Signup', new_user_path %>
+</p>
+<%= error_messages_for :session %>
+  
+<% form_for @session do |f| %>
+<p>
+  <%= f.label :login %><br/>
+  <%= f.text_field :login %>
+</p>
+<p> 
+  <label for="session_password">Password</label><br />
+  <%= f.password_field :password %>
+</p> 
+<p>
+  <%= submit_tag "login" %>
+</p>
+<% end %>
+

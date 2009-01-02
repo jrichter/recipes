@@ -19,6 +19,11 @@
       <div id='nav'>
         <ul>
           <li class='first'><a href='/recipes'>Recipes</a></li>
+          <% if @logged_in_user %>
+          <li><%= link_to "Logout", @application_session, :method => :delete %></li>     
+          <% else %>
+          <li><%= link_to "Login", login_path %></li>     
+          <% end %>
         </ul>
       </div>
   <div id='mainPhoto'/>

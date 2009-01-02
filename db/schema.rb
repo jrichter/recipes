@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081115041627) do
+ActiveRecord::Schema.define(:version => 20090102031736) do
 
   create_table "amounts", :force => true do |t|
     t.string   "ing_amnt"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20081115041627) do
     t.text     "directions"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "owner"
   end
 
   create_table "sessions", :force => true do |t|
@@ -41,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20081115041627) do
     t.string   "session_token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id",       :limit => 11
   end
 
   create_table "users", :force => true do |t|
@@ -48,6 +50,10 @@ ActiveRecord::Schema.define(:version => 20081115041627) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "lock"
+    t.string   "salt"
+    t.string   "encrypted_password"
+    t.string   "login"
   end
 
 end
