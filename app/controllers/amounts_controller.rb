@@ -1,6 +1,5 @@
 class AmountsController < ApplicationController
-in_place_edit_for :amount, :ing_amnt
-
+before_filter :ensure_login
 before_filter :load_recipe_ingredient
 
   # DELETE /amounts/1
@@ -12,7 +11,7 @@ before_filter :load_recipe_ingredient
     @ingredient.destroy if @ingredient.recipes.length == 0
 
     respond_to do |format|
-      format.html { redirect_to(@recipe) }
+      format.html { redirect_to(edit_recipe_path(@recipe)) }
       format.xml  { head :ok }
     end
   end

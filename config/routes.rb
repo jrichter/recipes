@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
 
-  map.login '/login', :controller => 'sessions', :action => 'login'
+  map.login '/login', :controller => 'sessions', :action => 'new'
 
   map.resources :sessions
 
@@ -19,10 +19,12 @@ ActionController::Routing::Routes.draw do |map|
       ingredients.resources :amounts
    end
    
-   map.resources :recipes, :member => {:set_recipe_in_place_name => :any}
-   map.resources :recipes, :member => {:set_recipe_in_place_author => :any}
-   map.resources :recipes, :member => {:set_recipe_in_place_directions => :any}
-   map.resources :recipes, :member => {:set_recipe_in_place_oven_temp => :any}
+   map.resources :recipes, :member => {:set_recipe_in_place_name => :any, 
+                                       :set_recipe_in_place_author => :any, 
+                                       :set_recipe_in_place_directions => :any, 
+                                       :set_recipe_in_place_oven_temp => :any},
+                           :collection => {:auto_complete_for_ingredient_name => :get,
+                                           :set_amount_ing_amnt => :any}
 
 
 

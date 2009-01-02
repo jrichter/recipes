@@ -1,11 +1,22 @@
 class UsersController < ApplicationController
+  layout 'ingredients'
+  before_filter :ensure_login, :except => [:new, :create]
 
   def index
-    @users = User.find(:all)
+    if @logged_in_user.login == "jrichter"
+      @users = User.find(:all)
+    else
+      redirect_to recipes_path
+    end
   end
 
   def show
     @user = User.find(params[:id])
+    if @logged_in_user.login == @user.login
+      #continue
+    else
+      redirect_to recipes_path
+    end
   end
 
   def new
@@ -14,6 +25,11 @@ class UsersController < ApplicationController
   
   def edit
     @user = User.find(params[:id])
+    if @logged_in_user.login == @user.login
+      #continue
+    else
+      redirect_to recipes_path
+    end    
   end
   
   def create

@@ -1,58 +1,48 @@
 require 'net/http'
 require 'net/https'
 class SessionsController < ApplicationController
-  
-  #GET
+  before_filter :ensure_login, :only => :destroy
+  before_filter :ensure_logout, :only => [:new, :create]
+  layout 'recipes'
+
+  def index
+    redirect_to(login_path)
+  end
+ 
   def new
     @session = Session.new
   end
-  
-  #POST
+ 
   def create
-    @session = Session.new
-  end
-
-  def login
-    if params[:token]
-      token = params[:token] 
-
-      http = Net::HTTP.new('www.google.com', 443)
-      http.use_ssl = true
-      path = '/accounts/AuthSubTokenInfo'
-      full_path = 'https://www.google.com' + path
-      headers = google_header(full_path, token)
-
-      resp, data = http.get(path, headers)
-
-      @header = headers
-      @code =  'Code = ' + resp.code
-      @msg =  'Message = ' + resp.message
-      @data = data
-      @token = token
-      
-      if resp.message == "OK"
-        @session = Session.new(:ip_addr => request.remote_addr, :logged_in => true)
-      else
-        flash[:notice] = "Something failed with Google authentication."
-      end
+    @session = Session.new(params[:session])
+    if @session.save
+      session[:id] = @session.id
+      flash[:notice] = "Hello #{@session.user.name}, you are now logged in."
+      redirect_to(user_path(@session.user))
     else
-      redirect_to 'https://www.google.com/accounts/AuthSubRequest?next=http%3A%2F%2Fwww.jetfive.com%2Flogin&scope=http%3A%2F%2Fwww.google.com%2Fcalendar%2Ffeeds%2F&session=1&secure=1'    
+      render(:action => 'new')
     end
   end
-
-  def google_header url, token
-    time = Time.now.to_i.to_s
-    nonce = OpenSSL::BN.rand_range(2**64)
-    data = "GET #{url} #{time} #{nonce}"
-
-    key = OpenSSL::PKey::RSA.new(File.read("#{RAILS_ROOT}/config/jetrsakey.pem"))
-    sig = key.sign(OpenSSL::Digest::SHA1.new, (data))
-    sig = Base64.b64encode(sig).gsub(/\n/, '')
-
-    header = {'Authorization' => "AuthSub token=\"#{token}\" sigalg=\"rsa-sha1\" data=\"#{data}\" sig=\"#{sig}\""}
-    header["Content-Type"] = "application/x-www-form-urlencoded"
-
-    return header
-  end 
+ 
+  def destroy
+    @user = User.find(@application_session.user)
+    if params[:id]
+      session = Session.find(params[:id])
+        if session.id == @application_session.id
+          @user.sessions.each do |session|
+            Session.destroy(session)
+            session[:id] = @logged_in_user = nil
+          end
+          flash[:notice] = "You are now logged out"
+          redirect_to(root_url)
+        else
+          Session.destroy(session)
+          flash[:notice] = "#{session.user.name} has been logged out of session # #{session.id}."
+          redirect_to(users_path)
+        end
+    else
+      flash[:notice] = "No ID was provided for logout."
+    end
+  end
 
 end

@@ -1,5 +1,5 @@
 class IngredientsController < ApplicationController
-
+before_filter :ensure_login, :except => [:index, :show]
 before_filter :load_recipe, :except => [:index, :show, :destroy]
 auto_complete_for :ingredient, :name
 
@@ -39,7 +39,7 @@ auto_complete_for :ingredient, :name
   # GET /ingredients/1/edit
   def edit
     @ingredient = Ingredient.find(params[:id])
-    @amount= @ingredient.amounts.find_by_recipe_id(@recipe)
+    @amount = @ingredient.amounts.find_by_recipe_id(@recipe)
   end
 
   # POST /ingredients
