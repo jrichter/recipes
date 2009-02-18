@@ -8,7 +8,6 @@
   <tr>
     <th>Name</th>
     <th>Author</th>
-    <th>Oven temp</th>
     <th>Directions</th>
   </tr>
 
@@ -16,11 +15,12 @@
   <tr>
     <td><%=h recipe.name %></td>
     <td><%=h recipe.author %></td>
-    <td><%=h recipe.oven_temp %></td>
     <td><%=h recipe.directions %></td>
     <td><%= link_to 'Show', recipe %></td>
+    <% if @logged_in_user %>
     <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
     <td><%= link_to 'Destroy', recipe, :confirm => 'This deletes everything associated with this recipe as well as the recipe itself.  Only do this if you are certain.', :method => :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

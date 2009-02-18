@@ -49,6 +49,9 @@ before_filter :ensure_login, :except => [:index, :show]
       @groups = @amounts.group_by do |amount|
         amount.ing_group
       end
+      if @groups == nil
+        @groups[""] = ""
+      end
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @recipe }

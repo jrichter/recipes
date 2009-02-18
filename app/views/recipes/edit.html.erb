@@ -27,7 +27,7 @@
                                          Element.show('add_ingredient')")%>
                                          </p>
   <div id="add_ingredient" style="display:none;">
-  <% form_remote_for Ingredient.new, :url => recipe_ingredients_path(@recipe), :update => "ingredients", :position => :bottom do |f| %>
+  <% form_remote_for Ingredient.new, :url => recipe_ingredients_path(@recipe), :update => "ingredient", :position => :bottom do |f| %>
 
 <% fields_for :amount do |f| %>
   <p>
