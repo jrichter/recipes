@@ -1,6 +1,9 @@
 class AmountsController < ApplicationController
 before_filter :ensure_login
-before_filter :load_recipe_ingredient
+before_filter :load_recipe_ingredient, :only => [:destroy]
+auto_complete_for :amount, :ing_group
+auto_complete_for :amount, :ing_amnt
+
 
   # DELETE /amounts/1
   # DELETE /amounts/1.xml
@@ -21,5 +24,6 @@ before_filter :load_recipe_ingredient
     @ingredient = Ingredient.find(params[:ingredient_id])
   
   end
+
 
 end

@@ -15,38 +15,35 @@
   </p>
 
   <p>
-    <b>Oven temp</b><br />
-    <%= in_place_editor_field :recipe, :in_place_oven_temp %>
-  </p>
-
-  <p>
     <b>Directions</b><br />
     <%= in_place_editor_field :recipe, :in_place_directions, {}, {:rows => 10} %>
   </p> 
-   <p id="ingredients">
-<b>Ingredients:</b><br/>
-<% @recipe.amounts.each do |amount| %>
-  <%= in_place_editor_field :amount, :ing_amnt, {:fall_back => amount} %>  <%= link_to amount.ingredient.name, amount.ingredient %>
-  <%= link_to 'Remove', recipe_ingredient_amount_path(@recipe,amount.ingredient,amount), :confirm => 'Are you sure?', :method => :delete %>
-  <br/>
-<% end %>
-  </p>
-  <p id="add_link"><%= link_to_function("Add an Ingredient",
+  <div id="ingredient">
+    <%= render :partial => "ingredients" %>
+  </div>
+  <div style="clear: both;"></div>
+  <p id="add_link" ><%= link_to_function("Add an Ingredient",
                                         "Element.hide('add_link'); 
                                          Element.show('add_ingredient')")%>
                                          </p>
   <div id="add_ingredient" style="display:none;">
   <% form_remote_for Ingredient.new, :url => recipe_ingredients_path(@recipe), :update => "ingredients", :position => :bottom do |f| %>
-  <p>
-    <b>Name</b><br />
-    <%=text_field_with_auto_complete :ingredient, :name, {}, {:method => :get}, [:ingredients] %> </p>
 
 <% fields_for :amount do |f| %>
   <p>
+    <b>Group</b><br />
+    <%= text_field_with_auto_complete :amount , :ing_group, {:onfocus => "clear(this)"}, {:method => :get}, [:amounts] %>
+  </p>
+  <p>
     <b>Amount</b><br />
-    <%= f.text_field :ing_amnt %>
+    <%= text_field_with_auto_complete :amount , :ing_amnt, {:onfocus => "clear(this)"}, {:method => :get}, [:amounts] %>
   </p>
 <% end %>
+  <p>
+    <b>Name</b><br />
+    <%=  text_field_with_auto_complete :ingredient, :name, {:onfocus => "clear(this)"}, {:method => :get}, [:ingredients] %>
+  </p>
+
 
   <%= f.hidden_field :recipe_id %>
   <p>

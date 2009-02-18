@@ -4,11 +4,19 @@ in_place_edit_for :recipe, :in_place_author
 in_place_edit_for :recipe, :in_place_directions
 in_place_edit_for :recipe, :in_place_oven_temp
 in_place_edit_for :amount, :in_place_ing_amnt
+in_place_edit_for :amount, :in_place_ing_group
+
 before_filter :ensure_login, :except => [:index, :show]
   def set_amount_ing_amnt
     @item = Amount.find(params[:id])
     @item.update_attribute(:ing_amnt, params[:value])
     render :text => @item.send(:ing_amnt).to_s
+  end
+
+  def set_amount_ing_group
+    @item = Amount.find(params[:id])
+    @item.update_attribute(:ing_group, params[:value])
+    render :text => @item.send(:ing_group).to_s
   end
 
   # GET /recipes
@@ -37,11 +45,21 @@ before_filter :ensure_login, :except => [:index, :show]
   def show
 #    @recipe = Recipe.find_by_name(params[:id])
      @recipe = Recipe.find(params[:id])
-
+      @amounts = @recipe.amounts
+      @groups = @amounts.group_by do |amount|
+        amount.ing_group
+      end
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @recipe }
     end
+  end
+
+   def change_group
+    @amount = Amount.find(params[:amount])
+    @amount.update_attributes(:ing_group => params[:group])
+    @groups = @amount.recipe.amounts.group_by &:ing_group
+    render :partial => "ingredients" #, :object => @groups
   end
 
   # GET /recipes/new
@@ -60,6 +78,9 @@ before_filter :ensure_login, :except => [:index, :show]
     @recipe = Recipe.find(params[:id])
     if @recipe.owner == @logged_in_user.login
       @amounts = @recipe.amounts
+      @groups = @amounts.group_by do |amount|
+        amount.ing_group
+      end
     else
       redirect_to recipe_path(@recipe)
     end

@@ -11,7 +11,7 @@ ActionController::Routing::Routes.draw do |map|
 
    map.resources :recipes do |recipes|
       recipes.resources :ingredients, :collection => {:auto_complete_for_ingredient_name => :get } do |ingredients|
-        ingredients.resources :amounts, :member => {:set_amount_ing_amnt => :any}
+        ingredients.resources :amounts, :member => {:set_amount_ing_amnt => :any, :set_amount_ing_group => :any}
       end
    end
    map.resources :ingredients, :collection => {:auto_complete_for_ingredient_name => :get } do |ingredients|
@@ -24,8 +24,8 @@ ActionController::Routing::Routes.draw do |map|
                                        :set_recipe_in_place_directions => :any, 
                                        :set_recipe_in_place_oven_temp => :any},
                            :collection => {:auto_complete_for_ingredient_name => :get,
-                                           :set_amount_ing_amnt => :any}
-
+                                           :set_amount_ing_amnt => :any, :set_amount_ing_group => :any, :change_group => :any}
+   map.resources :amounts, :collection => {:auto_complete_for_amount_ing_group => :get, :auto_complete_for_amount_ing_amnt => :any}
 
 
 

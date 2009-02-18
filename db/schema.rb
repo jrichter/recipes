@@ -9,14 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090102031736) do
+ActiveRecord::Schema.define(:version => 20090218025627) do
 
   create_table "amounts", :force => true do |t|
     t.string   "ing_amnt"
-    t.integer  "ingredient_id", :limit => 11
-    t.integer  "recipe_id",     :limit => 11
+    t.integer  "ingredient_id"
+    t.integer  "recipe_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "ing_group",     :default => "Main"
   end
 
   create_table "ingredients", :force => true do |t|
@@ -28,7 +29,6 @@ ActiveRecord::Schema.define(:version => 20090102031736) do
   create_table "recipes", :force => true do |t|
     t.string   "name"
     t.string   "author"
-    t.integer  "oven_temp",  :limit => 11
     t.text     "directions"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(:version => 20090102031736) do
     t.string   "session_token"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id",       :limit => 11
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|
