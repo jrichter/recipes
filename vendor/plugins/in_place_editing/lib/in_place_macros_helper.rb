@@ -72,7 +72,7 @@ module InPlaceMacrosHelper
   def in_place_editor_field(object, method, tag_options = {}, in_place_editor_options = {})
     tag = ::ActionView::Helpers::InstanceTag.new(object, method, self)
     if tag.object == nil or tag.object.id == nil
-    tag = ::ActionView::Helpers::InstanceTag.new(object, method, self, nil, tag_options[:fall_back])
+    tag = ::ActionView::Helpers::InstanceTag.new(object, method, self, tag_options[:fall_back])
     end
     logger.debug("#{tag.object} #{tag.object.id}")
     tag_options = {:tag => "span", :id => "#{object}_#{method}_#{tag.object.id}_in_place_editor", :class => "in_place_editor_field"}.merge!(tag_options)

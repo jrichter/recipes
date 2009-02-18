@@ -9,21 +9,23 @@
 </p>
 
 <p>
-  <b>Oven temp:</b>
-  <%=h @recipe.oven_temp %>
-</p>
-
-<p>
   <b>Directions:</b>
   <%=h @recipe.directions %>
 </p>
 <p>
   <b>Ingredients:</b><br/>
-  <% @recipe.amounts.each do |amount| %>
-  <%=h amount.ing_amnt %> <%= link_to amount.ingredient.name, amount.ingredient %>
-<br/>
-  <% end %>
+<% @groups.keys.to_a.each do |key| %>
+  <div id="key" class="box">
+    <b><%=h key %></b><br/>
+    <% @groups[key].each do |amount| %>
+      <%= in_place_editor_field :amount, :ing_amnt, {:fall_back => amount} %>  <%= link_to amount.ingredient.name, amount.ingredient %>
+      <%= link_to 'Remove', recipe_ingredient_amount_path(@recipe,amount.ingredient,amount), :confirm => 'Are you sure?', :method => :delete %>
+      <br/>
+    <% end %>
+  </div>
+<% end %>
 </p>
-
+<p style="clear: both;">
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %>
+</p>
