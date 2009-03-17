@@ -6,4 +6,4 @@ config/jetrsakey.pem
 config/*.pem
 jot
 db/*.db
-
+*.db
