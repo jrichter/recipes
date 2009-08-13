@@ -3,15 +3,18 @@
 <%= error_messages_for :recipe %>
 
   <% content_for :picture do yield   %>
-  <% unless @recipe.picture_url %>
-  <p>
-    <b>Add the url to embed a flickr image.</b>  Goto <%= link_to "flickr.com", "http://www.flickr.com" %> 
-    and create an account, or sign in.  Upload a new picture or goto the picture you want to add.  Click 'All Sizes' from the
-    photo page.  Then click on the small size.  Copy and paste the html in item number 1 here.
-  </p>
-  <% end  %>
-    <%= in_place_editor_field :recipe, :in_place_picture_url %>
+    <% unless @recipe.picture_url %>
+    <p>
+      <b>Add the url to embed a flickr image.</b>  Goto <%= link_to "flickr.com", "http://www.flickr.com" %>
+      and create an account, or sign in.  Upload a new picture or goto the picture you want to add.  Click 'All Sizes' from the
+      photo page.  Then click on the small size.  Copy and paste the html in item number 1 here.
+    </p>
+    <% end  %>
+    <p>
+      <%= in_place_editor_field :recipe, :in_place_picture_url %>
+    <p>
   <% end %>
+  
   <p>
     <b>Name</b><br />
     <%= in_place_editor_field :recipe, :in_place_name %>
