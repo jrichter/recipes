@@ -6,7 +6,16 @@ auto_complete_for :ingredient, :name
   # GET /ingredients
   # GET /ingredients.xml
   def index
-    @ingredients = Ingredient.find(:all)
+    options = {
+      :order => 'name DESC'
+    }
+   if params[:term]
+     options[:conditions] = [
+     "name LIKE :term",
+     {:term => "%#{params[:term]}%"}
+      ]
+   end
+    @ingredients = Ingredient.find(:all, options)
 
     respond_to do |format|
       format.html # index.html.erb

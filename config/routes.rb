@@ -22,7 +22,8 @@ ActionController::Routing::Routes.draw do |map|
    map.resources :recipes, :member => {:set_recipe_in_place_name => :any, 
                                        :set_recipe_in_place_author => :any, 
                                        :set_recipe_in_place_directions => :any, 
-                                       :set_recipe_in_place_oven_temp => :any},
+                                       :set_recipe_in_place_oven_temp => :any,
+                                       :set_recipe_in_place_picture_url => :any},
                            :collection => {:auto_complete_for_ingredient_name => :get,
                                            :set_amount_ing_amnt => :any, :set_amount_ing_group => :any, :change_group => :any}
    map.resources :amounts, :collection => {:auto_complete_for_amount_ing_group => :get, :auto_complete_for_amount_ing_amnt => :any}

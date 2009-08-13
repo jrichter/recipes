@@ -1,31 +1,48 @@
-<h2>Listing recipes</h2>
-
-
-
-
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Author</th>
-    <th>Directions</th>
-  </tr>
-
-<% for recipe in @recipes %>
-  <tr>
-    <td><%=h recipe.name %></td>
-    <td><%=h recipe.author %></td>
-    <td><%=h recipe.directions %></td>
-    <td><%= link_to 'Show', recipe %></td>
-    <% if @logged_in_user %>
-    <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
-    <td><%= link_to 'Destroy', recipe, :confirm => 'This deletes everything associated with this recipe as well as the recipe itself.  Only do this if you are certain.', :method => :delete %></td>
-    <% end %>
-  </tr>
+<% content_for :picture do %>
+  <div class="flickr_image">
+    <center>
+      <%= Recipe.flickr_feed %>
+    </center>
+  </div>
 <% end %>
-</table>
+
+<h2>Listing recipes</h2>
+<br/>
+<hr>
+<div>
+<% @recipes.each do |recipe| %>
+  <p>
+  <span class="title"><%=h recipe.name %></span><br/>
+   <em>Author:</em>  <%=h recipe.author %><br/>
+   <em>Directions:</em> <%= truncate(recipe.directions, 140) %><br/>
+   <%= link_to 'Show', recipe %>
+   <% if @logged_in_user %>
+   | <%= link_to 'Edit', edit_recipe_path(recipe) %> |
+   <%= link_to 'Destroy', recipe, :confirm => 'This deletes everything associated with this recipe as well as the recipe itself.  Only do this if you are certain.', :method => :delete %>
+   <% end %>
+   <br/>
+  </p>
+<% end %>
+</div>
 
 <br />
 
 <%= link_to 'New recipe', new_recipe_path %> |
 <%= link_to 'Ingredients', ingredients_path %>
+
+<% content_for :ingredients do %>
+<h2>Listing ingredients</h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% for ingredient in @ingredients %>
+  <tr>
+    <td><%=h ingredient.name %></td>
+    <td><%= link_to 'Show', ingredient %></td>
+  </tr>
+<% end %>
+</table>
+<% end %>
