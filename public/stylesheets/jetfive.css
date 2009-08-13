@@ -97,6 +97,13 @@ p {
   padding:0;
   margin:0;
 }
+#mainPhoto p {
+  margin-top:20px;
+}
+#mainPhoto .inplaceeditor-form {
+  margin:0;
+  padding:0;
+}
 #mainPhoto a {
   border:none;
 } 
