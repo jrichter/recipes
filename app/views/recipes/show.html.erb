@@ -12,7 +12,7 @@
 <% content_for :picture do %>
   <div class="flickr_image">
   <center>
-    <%= image_tag(@recipe.picture_url) if @recipe.picture_url %>
+    <%= @recipe.picture_url %>
   </center>
   </div>
 <% end  %>
