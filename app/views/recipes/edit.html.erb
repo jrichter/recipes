@@ -2,7 +2,16 @@
 
 <%= error_messages_for :recipe %>
 
-
+  <% content_for :picture do yield   %>
+  <% unless @recipe.picture_url %>
+  <p>
+    <b>Add the url to embed a flickr image.</b>  Goto <%= link_to "flickr.com", "http://www.flickr.com" %> 
+    and create an account, or sign in.  Upload a new picture or goto the picture you want to add.  Click 'All Sizes' from the
+    photo page.  Then click on the small size.  Copy and paste the html in item number 1 here.
+  </p>
+  <% end  %>
+    <%= in_place_editor_field :recipe, :in_place_picture_url %>
+  <% end %>
   <p>
     <b>Name</b><br />
     <%= in_place_editor_field :recipe, :in_place_name %>
@@ -17,11 +26,11 @@
   <p>
     <b>Directions</b><br />
     <%= in_place_editor_field :recipe, :in_place_directions, {}, {:rows => 10} %>
-  </p> 
+  </p>
+  <% content_for :ingredients do %>
   <div id="ingredient">
     <%= render :partial => "ingredients" %>
   </div>
-  <div style="clear: both;"></div>
   <p id="add_link" ><%= link_to_function("Add an Ingredient",
                                         "Element.hide('add_link'); 
                                          Element.show('add_ingredient')")%>
@@ -33,8 +42,7 @@
   <p>
     <b>Group</b><br />
     <%= text_field_with_auto_complete :amount , :ing_group, {:onfocus => "clear(this)"}, {:method => :get}, [:amounts] %>
-  </p>
-  <p>
+  
     <b>Amount</b><br />
     <%= text_field_with_auto_complete :amount , :ing_amnt, {:onfocus => "clear(this)"}, {:method => :get}, [:amounts] %>
   </p>
@@ -53,7 +61,7 @@
 
 <% end %>
   </div>
-
+<% end %>
  
 <%= link_to 'Show', @recipe %> |
 <%= link_to 'Back', recipes_path %>

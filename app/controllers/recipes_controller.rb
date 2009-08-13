@@ -3,6 +3,7 @@ in_place_edit_for :recipe, :in_place_name
 in_place_edit_for :recipe, :in_place_author
 in_place_edit_for :recipe, :in_place_directions
 in_place_edit_for :recipe, :in_place_oven_temp
+in_place_edit_for :recipe, :in_place_picture_url
 in_place_edit_for :amount, :in_place_ing_amnt
 in_place_edit_for :amount, :in_place_ing_group
 
@@ -27,11 +28,11 @@ before_filter :ensure_login, :except => [:index, :show]
     }
    if params[:term]
      options[:conditions] = [
-     "name LIKE :term OR directions LIKE :term OR author LIKE :term OR oven_temp LIKE :term",
+     "name LIKE :term OR directions LIKE :term OR author LIKE :term",
      {:term => "%#{params[:term]}%"}
       ] 
    end
-
+    @ingredients = Ingredient.find(:all)
     @recipes = Recipe.find(:all, options)
 
     respond_to do |format|
@@ -86,6 +87,10 @@ before_filter :ensure_login, :except => [:index, :show]
       end
     else
       redirect_to recipe_path(@recipe)
+    end
+    respond_to do |format|
+      format.html {}
+      format.js {}
     end
   end
 

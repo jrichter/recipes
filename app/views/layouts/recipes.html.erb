@@ -1,48 +1,68 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>Recipes: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'jetfive' %>
-  <%= javascript_include_tag :defaults%>
-</head>
+<%= render :partial => "layouts/main/header" %>
+
 <body>
-<div id='header-wrap'>
-<div id='header'>
-<h1><span class="big">J</span>etfive <span>Recipes</span></h1>
-<div class="slogan">Store, Share, Salivate ...</div>
-</div>
-</div>
-<div id='wrap'>
-      <div id='nav'>
-        <div class='search'>
-          <% form_tag(recipes_path, :method => "get") do %>
-            <label>Search Term</label>
-            <%= text_field_tag "term", params[:term] %>
-            <%= submit_tag "Search" %>
+  <div class="container">
+
+      <div id='header'>
+        <div class="slogan span-23"><center>STORE. SHARE. SALIVATE.</center></div>
+        <div class="logo span-9">Jetfive | Recipes</div>
+        <div id="flickr" class="span-3 push-8"> &nbsp;&nbsp;<%= link_to image_tag('flickr.png'), 'http://www.flickr.com'  %>  </div>
+        <div id='mainPhoto' class="span-4 push-8">
+          <%= yield :picture %>
+        </div>
+      </div>
+
+      <div id='nav' class="span-9">
+        <%= link_to 'Recipes', recipes_path %> | <%= link_to 'Ingredients', ingredients_path %>
+      </div>
+      <div id='content' class="span-16">
+        <p style="color: green"><%= flash[:notice] %></p>
+        <div class="inner">
+        <%= yield  %>
+        </div>
+      </div>
+      <div id='ingredients' class="span-6 last push-1">
+        <div id="ing-header" class="span-6">&nbsp;</div>
+        <div id="ing-content" class="span-6">
+          <%= yield :ingredients %>
+        </div>
+        <div id="ing-footer" class="span-6">&nbsp;</div>
+      </div>
+      <div id='foot-nav' class="span-24">
+        <div class='links'>
+          <% if @logged_in_user %>
+          <%= link_to "Logout", @application_session, :method => :delete %>
+          <% else %>
+          <%= link_to "Login", login_path %> | <%= link_to 'Signup', login_path %>
           <% end %>
         </div>
-        <ul>
-          <li class='first'><a href='/ingredients'>Ingredients</a></li>
-          <% if @logged_in_user %>
-          <li><%= link_to "Logout", @application_session, :method => :delete %></li>
-          <% else %>
-          <li><%= link_to "Login", login_path %></li>
-          <% end %>
-        </ul>
+ 
       </div>
-  <div id='mainPhoto'/>
-  <div id='content'>
-    <div id='contentpad'>
-<p style="color: green"><%= flash[:notice] %></p>
+  </div>
 
-<%= yield  %>
+  <div id="footer-wrap">
+    <div class="container">
+      <div id='foot-bar' class="span-14 append-10">
+          <% form_tag(recipes_path, :method => "get") do %>
+          <%= text_field_tag "term", params[:term], :value => "Search" %>
+          <% end %>
+      </div>
+
+      <div id='footer' class="span-14 prepend-10">
+        "You don't have to cook fancy or complicated masterpieces - just good food from fresh ingredients."
+      - Julia Child
+     <br/>
+     <br/>
+        "Slicing a warm slab of bacon is a lot like giving a ferret a shave.
+     No matter how careful you are, somebody's going to get hurt."
+    - Alton Brown, celebrity chef and host of Good Eats
+        <%= yield :footer %>
+      </div>
     </div>
   </div>
-</div>
-<div id='footer'>
-</div>
+
 </body>
 </html>

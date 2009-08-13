@@ -1,4 +1,14 @@
+<% content_for :picture do %>
+  <div class="flickr_image">
+    <center >
+      <%= Recipe.flickr_feed("http://api.flickr.com/services/feeds/groups_pool.gne?id=820966@N25&lang=en-us&format=rss_200") %>
+    </center>
+  </div>
+<% end %>
+
 <h2>Listing ingredients</h2>
+<br/>
+<hr>
 
 <table>
   <tr>

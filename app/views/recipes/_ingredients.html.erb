@@ -1,6 +1,7 @@
 
 <b>Ingredients:</b><br/>
-<% @groups.keys.to_a.each do |key| %>
+<% if @groups %>
+<% @groups.keys.each do |key| %>
     <div id=<%= key.gsub(/ /, "_")  %>  class="box">
         <b><%=h key %></b><br/>
         <%= drop_receiving_element("#{key.gsub(/ /, "_")}",:with => "'amount=' + (element.id.split('_').last())", :url =>
@@ -12,7 +13,8 @@
             - <%= in_place_editor_field :amount, :ing_amnt, {:fall_back => @amount} %>
             <%= link_to @amount.ingredient.name, @amount.ingredient %>
             <%= link_to 'Remove', recipe_ingredient_amount_path(@amount.recipe,@amount.ingredient,@amount), :confirm => 'Are you sure?', :method => :delete %>
-          </div><br/>
+          </div>
         <% end %>
     </div>
+<% end %>
 <% end %>
