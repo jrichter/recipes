@@ -1,3 +1,10 @@
+<%= javascript_include_tag "tiny_mce/tiny_mce" %>
+<%= javascript_tag '
+tinyMCE.init({
+mode : "textareas",
+theme : "simple"
+});
+'%>
 <h2>Editing recipe</h2>
 
 <%= error_messages_for :recipe %>
@@ -28,7 +35,10 @@
 
   <p>
     <b>Directions</b><br />
-    <%= in_place_editor_field :recipe, :in_place_directions, {}, {:rows => 10} %>
+    <% form_for(@recipe) do |f| %>
+    <%= f.text_area :directions %><br/>
+    <%= f.submit "Save" %>
+    <% end %>
   </p>
   <% content_for :ingredients do %>
   <div id="ingredient">
@@ -68,3 +78,4 @@
  
 <%= link_to 'Show', @recipe %> |
 <%= link_to 'Back', recipes_path %>
+

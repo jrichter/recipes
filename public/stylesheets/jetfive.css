@@ -127,7 +127,7 @@ p {
   border:4px solid black;
 }
 #content {
-  line-height:1em;
+  line-height: 1.25em;
   margin-top:-6em;
   font-family: "Trebuchet MS";
   font-size: 18px;

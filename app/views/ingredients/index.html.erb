@@ -15,7 +15,7 @@
     <th>Name</th>
   </tr>
 
-<% for ingredient in @ingredients %>
+<% @ingredients.each do |ingredient| %>
   <tr>
     <td><%=h ingredient.name %></td>
     <td><%= link_to 'Show', ingredient %></td>

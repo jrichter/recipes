@@ -3,8 +3,13 @@
 </h2>
 
 <p> Recipes that have this ingredient. <br/><br/>
-  <% @ingredient.recipes.each do |recipe| %>
-    <%= link_to recipe.name, recipe %> - <%=h recipe.amounts.find(:first, :conditions => {:ingredient_id => @ingredient.id}).ing_amnt %> <%=h @ingredient.name %><br/>
+  <% @ingredient.recipes.uniq.each do |recipe| %>
+    <%= link_to recipe.name, recipe %> <br/>
+    <ul>
+    <% recipe.amounts.find(:all, :conditions => {:ingredient_id => @ingredient.id}).each do |amnt| %> 
+      <li><strong><%=h amnt.ing_group %></strong> <%=h amnt.ing_amnt %> <%=h amnt.ingredient.name %></li>
+    <% end %>
+    </ul>
   <% end %>
 </p>
 

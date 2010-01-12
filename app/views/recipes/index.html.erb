@@ -6,7 +6,7 @@
   </div>
 <% end %>
 
-<h2>Listing recipes</h2>
+<h2>Recipes</h2>
 <br/>
 <hr>
 <div>
@@ -31,18 +31,22 @@
 <%= link_to 'Ingredients', ingredients_path %>
 
 <% content_for :ingredients do %>
-<h2>Listing ingredients</h2>
+<h2>Ingredients</h2>
 
 <table>
   <tr>
     <th>Name</th>
   </tr>
-
-<% for ingredient in @ingredients %>
+<% count = 0 %>
+<% @ingredients.sort {rand(10)}.reverse_each do |ingredient| %>
   <tr>
     <td><%=h ingredient.name %></td>
     <td><%= link_to 'Show', ingredient %></td>
   </tr>
+<% count += 1 %>
+<% if count == 10 %>
+  <% break %>
+<% end %>
 <% end %>
 </table>
 <% end %>

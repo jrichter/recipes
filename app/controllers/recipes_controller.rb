@@ -8,6 +8,7 @@ in_place_edit_for :amount, :in_place_ing_amnt
 in_place_edit_for :amount, :in_place_ing_group
 
 before_filter :ensure_login, :except => [:index, :show]
+
   def set_amount_ing_amnt
     @item = Amount.find(params[:id])
     @item.update_attribute(:ing_amnt, params[:value])

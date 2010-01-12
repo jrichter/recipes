@@ -7,7 +7,7 @@ auto_complete_for :ingredient, :name
   # GET /ingredients.xml
   def index
     options = {
-      :order => 'name DESC'
+      :order => 'name ASC'
     }
    if params[:term]
      options[:conditions] = [
