@@ -6,13 +6,13 @@
         <b><%=h key %></b><br/>
         <%= drop_receiving_element("#{key.gsub(/ /, "_")}",:with => "'amount=' + (element.id.split('_').last())", :url =>
         { :controller => "recipes", :action => "change_group", :group => key }, :update => 'ingredient') %>
-        <% @groups[key].each do |@amount| %>
-          <div id=<%= "amount_#{@amount.id}" %>>
-            <%= draggable_element "amount_#{@amount.id}", :snap => 5 %>
-              <%= in_place_editor_field :amount, :ing_group, {:fall_back => @amount} %>
-            - <%= in_place_editor_field :amount, :ing_amnt, {:fall_back => @amount} %>
-            <%= link_to @amount.ingredient.name, @amount.ingredient %>
-            <%= link_to 'Remove', recipe_ingredient_amount_path(@amount.recipe,@amount.ingredient,@amount), :confirm => 'Are you sure?', :method => :delete %>
+        <% @groups[key].each do |amount| %>
+          <div id=<%= "amount_#{amount.id}" %>>
+            <%= draggable_element "amount_#{amount.id}", :snap => 5 %>
+              <%= in_place_editor_field :amount, :ing_group, {:fall_back => amount} %>
+            - <%= in_place_editor_field :amount, :ing_amnt, {:fall_back => amount} %>
+            <%= link_to amount.ingredient.name, amount.ingredient %>
+            <%= link_to 'Remove', recipe_ingredient_amount_path(amount.recipe,amount.ingredient,amount), :confirm => 'Are you sure?', :method => :delete %>
           </div>
         <% end %>
     </div>

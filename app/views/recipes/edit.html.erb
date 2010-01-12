@@ -51,22 +51,22 @@ theme : "simple"
   <div id="add_ingredient" style="display:none;">
   <% form_remote_for Ingredient.new, :url => recipe_ingredients_path(@recipe), :update => "ingredient", :position => :bottom do |f| %>
 
-<% fields_for :amount do |f| %>
+<% fields_for :amount do |form| %>
   <p>
     <b>Group</b><br />
-    <%= text_field_with_auto_complete :amount , :ing_group, {:onfocus => "clear(this)"}, {:method => :get}, [:amounts] %>
+    <%= text_field_with_auto_complete :amount , :ing_group, {:onfocus => "clear(this)"}, {:method => :get}, 'amounts' %>
   
     <b>Amount</b><br />
-    <%= text_field_with_auto_complete :amount , :ing_amnt, {:onfocus => "clear(this)"}, {:method => :get}, [:amounts] %>
+    <%= text_field_with_auto_complete :amount , :ing_amnt, {:onfocus => "clear(this)"}, {:method => :get}, 'amounts' %>
   </p>
 <% end %>
   <p>
     <b>Name</b><br />
-    <%=  text_field_with_auto_complete :ingredient, :name, {:onfocus => "clear(this)"}, {:method => :get}, [:ingredients] %>
+    <%=  text_field_with_auto_complete :ingredient, :name, {:onfocus => "clear(this)"}, {:method => :get}, 'ingredients' %>
   </p>
 
 
-  <%= f.hidden_field :recipe_id %>
+
   <p>
     <%= f.submit "Create", :onclick => "Element.show('add_link'); 
                                          Element.hide('add_ingredient')" %>    
