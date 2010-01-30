@@ -200,7 +200,7 @@ UNITS = %w(bag(?:s)? box(?:es)? teaspoon(?:s)? tsp(?:s)? tablespoon(?:s)? tbsp(?
          end
          count += 1      
          if array_item.scan(/<li>/) != [] or @all_list_item == true
-           array_item.gsub(/<li>/,"").gsub(/<\/li>/,"") =~ /([0-9]+(?:(?:\s)?and(?:\s)?)?(?:(?:\s)?&(?:\s)?)?(?:(?:\s)?[0-9\/-]+)?)?(?:\s*)?(#{UNITS.join('|')})?(?:\s*)?([&a-zA-Z, 0-9 \/]+)/
+           array_item.gsub(/<li>/,"").gsub(/<\/li>/,"") =~ /([0-9]+(?:(?:\s)?and(?:\s)?)?(?:(?:\s)?&(?:\s)?)?(?:(?:\s)?[0-9\/-]+)?)?(?:\s*)?(#{UNITS.join('|')})?(?:\s*)?([&;a-zA-Z, 0-9 \/]+)/
            name = $3.strip
            quantity = $1
            unit = $2
