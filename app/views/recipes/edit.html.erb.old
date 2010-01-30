@@ -1,32 +1,81 @@
-<h1>Editing recipe</h1>
+<%= javascript_include_tag "tiny_mce/tiny_mce" %>
+<%= javascript_tag '
+tinyMCE.init({
+mode : "textareas",
+theme : "simple"
+});
+'%>
+<h2>Editing recipe</h2>
 
 <%= error_messages_for :recipe %>
 
-<% form_for(@recipe) do |f| %>
+  <% content_for :picture do yield   %>
+    <% unless @recipe.picture_url %>
+    <p>
+      <b>Add the url to embed a flickr image.</b>  Goto <%= link_to "flickr.com", "http://www.flickr.com" %>
+      and create an account, or sign in.  Upload a new picture or goto the picture you want to add.  Click 'All Sizes' from the
+      photo page.  Then click on the small size.  Copy and paste the html in item number 1 here.
+    </p>
+    <% end  %>
+    <p>
+      <%= in_place_editor_field :recipe, :in_place_picture_url %>
+    <p>
+  <% end %>
+  
   <p>
     <b>Name</b><br />
-    <%= f.text_field :name %>
+    <%= in_place_editor_field :recipe, :in_place_name %>
+
   </p>
 
   <p>
     <b>Author</b><br />
-    <%= f.text_field :author %>
-  </p>
-
-  <p>
-    <b>Oven temp</b><br />
-    <%= f.text_field :oven_temp %>
+    <%= in_place_editor_field :recipe, :in_place_author %>
   </p>
 
   <p>
     <b>Directions</b><br />
-    <%= f.text_area :directions %>
+    <% form_for(@recipe) do |f| %>
+    <%= f.text_area :directions %><br/>
+    <%= f.submit "Save" %>
+    <% end %>
+  </p>
+  <% content_for :ingredients do %>
+  <div id="ingredient">
+    <%= render :partial => "ingredients" %>
+  </div>
+  <p id="add_link" ><%= link_to_function("Add an Ingredient",
+                                        "Element.hide('add_link'); 
+                                         Element.show('add_ingredient')")%>
+                                         </p>
+  <div id="add_ingredient" style="display:none;">
+  <% form_remote_for Ingredient.new, :url => recipe_ingredients_path(@recipe), :update => "ingredient", :position => :bottom do |f| %>
+
+<% fields_for :amount do |form| %>
+  <p>
+    <b>Group</b><br />
+    <%= text_field_with_auto_complete :amount , :ing_group, {:onfocus => "clear(this)"}, {:method => :get}, 'amounts' %>
+  
+    <b>Amount</b><br />
+    <%= text_field_with_auto_complete :amount , :ing_amnt, {:onfocus => "clear(this)"}, {:method => :get}, 'amounts' %>
+  </p>
+<% end %>
+  <p>
+    <b>Name</b><br />
+    <%=  text_field_with_auto_complete :ingredient, :name, {:onfocus => "clear(this)"}, {:method => :get}, 'ingredients' %>
   </p>
 
+
+
   <p>
-    <%= f.submit "Update" %>
+    <%= f.submit "Create", :onclick => "Element.show('add_link'); 
+                                         Element.hide('add_ingredient')" %>    
   </p>
+
+<% end %>
+  </div>
 <% end %>
  
 <%= link_to 'Show', @recipe %> |
 <%= link_to 'Back', recipes_path %>
+

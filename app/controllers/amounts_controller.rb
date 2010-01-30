@@ -14,7 +14,7 @@ auto_complete_for :amount, :ing_amnt
     @ingredient.destroy if @ingredient.recipes.length == 0
 
     respond_to do |format|
-      format.html { redirect_to(edit_recipe_path(@recipe)) }
+      format.html { redirect_to(recipe_path(@recipe)) }
       format.xml  { head :ok }
     end
   end

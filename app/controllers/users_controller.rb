@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :ensure_login, :except => [:new, :create]
 
   def index
-    if @logged_in_user.login == "jrichter"
+    if @logged_in_user.login == "justin"
       @users = User.find(:all)
     else
       redirect_to recipes_path
